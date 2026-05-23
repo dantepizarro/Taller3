@@ -4,8 +4,9 @@ import java.io.File;
 
 
 public class App {
-	static Scanner scan = new Scanner(System.in);
+	private static Scanner scan = new Scanner (System.in);
 	public static void main(String[] args) {
+		
 		LeerHechizos();
 		LeerMagos();
 		menuInicial();
@@ -13,9 +14,9 @@ public class App {
 	}
 	public static void LeerHechizos() {
 		try {
-			scan = new Scanner(new File("Hechizos.txt"));
-			while(scan.hasNextLine()) {
-				String[] partes = scan.nextLine().split(";");
+			Scanner scanHechizo = new Scanner(new File("Hechizos.txt"));
+			while(scanHechizo.hasNextLine()) {
+				String[] partes = scanHechizo.nextLine().split(";");
 				String NombreHechizo = partes[0];
 				String Tipo = partes[1];
 				int Damage = Integer.parseInt(partes[2]);
@@ -27,12 +28,14 @@ public class App {
 					int MejoraDefensa = Integer.parseInt(partes[3]);
 					break;
 				case "Planta":
-					int DuracionStun = Integer.parseInt(partes[3]);
-					int CantPlantas = Integer.parseInt(partes[4]);
+					String[] partes1 = partes[3].split(",");
+					int DuracionStun = Integer.parseInt(partes1[0]);
+					int CantPlantas = Integer.parseInt(partes1[1]);
 					break;
 				case "Agua":
-					int CantidadHeal = Integer.parseInt(partes[3]);
-					int PresionDelAgua = Integer.parseInt(partes[4]);
+					String[] partes2 = partes[3].split(",");
+					int CantidadHeal = Integer.parseInt(partes2[0]);
+					int PresionDelAgua = Integer.parseInt(partes2[1]);
 					break;
 				
 				}
@@ -43,9 +46,9 @@ public class App {
 	}
 	public static void LeerMagos() {
 		try {
-			scan = new Scanner(new File("Magos.txt"));
-			while(scan.hasNextLine()) {
-				String[] partes = scan.nextLine().split(";");
+			Scanner scanMagos = new Scanner(new File("Magos.txt"));
+			while(scanMagos.hasNextLine()) {
+				String[] partes = scanMagos.nextLine().split(";");
 				String NombreMago = partes[0];
 				String[] Hechizos = partes[1].split("|");
 				for(int i = 0;i<Hechizos.length;i++) {
