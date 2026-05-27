@@ -5,6 +5,7 @@ import java.io.File;
 
 public class App {
 	private static Scanner scan = new Scanner (System.in);
+	private static Sistema sys = new SystemImpl();
 	public static void main(String[] args) {
 		
 		LeerHechizos();
@@ -23,19 +24,23 @@ public class App {
 				switch(Tipo) {
 				case "Fuego":
 					int DuracionQuemadura = Integer.parseInt(partes[3]);
+					sys.AgregarTierraFuego(NombreHechizo, Tipo, Damage, DuracionQuemadura);
 					break;
 				case "Tierra":
 					int MejoraDefensa = Integer.parseInt(partes[3]);
+					sys.AgregarTierraFuego(NombreHechizo, Tipo, Damage, MejoraDefensa);
 					break;
 				case "Planta":
 					String[] partes1 = partes[3].split(",");
 					int DuracionStun = Integer.parseInt(partes1[0]);
 					int CantPlantas = Integer.parseInt(partes1[1]);
+					sys.AgregarAguaPlanta(NombreHechizo, Tipo, Damage, DuracionStun, CantPlantas);
 					break;
 				case "Agua":
 					String[] partes2 = partes[3].split(",");
 					int CantidadHeal = Integer.parseInt(partes2[0]);
 					int PresionDelAgua = Integer.parseInt(partes2[1]);
+					sys.AgregarAguaPlanta(NombreHechizo, Tipo, Damage, CantidadHeal, PresionDelAgua);
 					break;
 				
 				}
@@ -51,9 +56,7 @@ public class App {
 				String[] partes = scanMagos.nextLine().split(";");
 				String NombreMago = partes[0];
 				String[] Hechizos = partes[1].split("|");
-				for(int i = 0;i<Hechizos.length;i++) {
-					String Hechizo = Hechizos[i];
-				}
+				sys.AgregarMago(NombreMago, Hechizos);
 			}
 		}catch(Exception e) {
 			System.out.println("problemas con el archivo magos");
@@ -70,8 +73,10 @@ public class App {
 			
 			switch(opcion) {
 			case 1:
+				menuAdministrador();
 				break;
 			case 2:
+				menuAnalista();
 				break;
 			}
 		}while(opcion != 3);
