@@ -1,6 +1,6 @@
 package dominio;
 
-public class Fuego extends Hechizo{
+public class Fuego extends Hechizo implements Visitable{
 	public int DuracionQuemadura;
 
 	public Fuego(String nombreHechizo, String tipo, int damage, int duracionQuemadura) {
@@ -15,5 +15,7 @@ public class Fuego extends Hechizo{
 	public void setDuracionQuemadura(int duracionQuemadura) {
 		DuracionQuemadura = duracionQuemadura;
 	}
-	
+	public double aceptar(HechizoVisitor visitante) {
+		return visitante.visitar(this);
+	}
 }

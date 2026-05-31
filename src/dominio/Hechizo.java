@@ -27,4 +27,6 @@ public class Hechizo {
 		Damage = damage;
 	}
 	
+	
+	
 }

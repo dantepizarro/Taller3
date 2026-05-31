@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Mago {
 	public String NombreMago;
 	public List<Hechizo> hechizos = new ArrayList<>();
+	public double puntuacion;
 	public Mago(String nombreMago, List<Hechizo> hechizos) {
 		NombreMago = nombreMago;
 		this.hechizos = hechizos;

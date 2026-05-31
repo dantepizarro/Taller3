@@ -33,5 +33,39 @@ public class SystemImpl implements Sistema{
 		magos.add(new Mago(nombreMago,HechizosMago));
 		
 	}
+	public void MostrarHechizos() {
+		int i = 1;
+		for (Hechizo h : hechizos) {
+			System.out.println(i+") "+ h.getNombreHechizo());
+			i++;
+		}
+	
+	} 
+	public void MostrarMagos() {
+		int a = 1;
+		for (Mago m : magos) {
+			System.out.println(a+") "+ m.getNombreMago());
+			a++;
+		}
+	}
+	public void MostrarHechizosPuntuacion(HechizoVisitor visitor) {
+		int i = 1;
+		  for(Hechizo h : hechizos) {
+		        if(h instanceof Visitable) {
+		            double puntuacion = ((Visitable) h).aceptar(visitor);
+		            System.out.println(i + ") " +h.getNombreHechizo() + " - Puntuación: " + puntuacion);
+		            i ++ ;
+		        }
+		    }
 
+	}
+	public void MostrarMagosPuntuacion(HechizoVisitor visitor) {
+	    for(Mago m : magos) {
+	        double puntuacionTotal = 0;
+	        for(Hechizo h : m.getHechizos()) {
+	            puntuacionTotal += ((Visitable) h).aceptar(visitor);
+	        }
+	        System.out.println(m.getNombreMago() + " - Puntuación: " + puntuacionTotal);
+	    }
+	}
 }

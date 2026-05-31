@@ -1,6 +1,6 @@
 package dominio;
 
-public class Planta extends Hechizo{
+public class Planta extends Hechizo implements Visitable{
 	public int DuracionStun,CantPlantas;
 
 
@@ -25,5 +25,7 @@ public class Planta extends Hechizo{
 	public void setCantPlantas(int cantPlantas) {
 		CantPlantas = cantPlantas;
 	}
-	
+	public double aceptar(HechizoVisitor visitante) {
+		return visitante.visitar(this);
+	}
 }

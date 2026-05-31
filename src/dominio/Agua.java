@@ -1,6 +1,6 @@
 package dominio;
 
-public class Agua extends Hechizo{
+public class Agua extends Hechizo implements Visitable{
 	public int CantidadHeal,PresionDelAgua;
 
 	public Agua(String nombreHechizo, String tipo, int damage, int cantidadHeal, int presionDelAgua) {
@@ -25,4 +25,7 @@ public class Agua extends Hechizo{
 		PresionDelAgua = presionDelAgua;
 	}
 	
+	public double aceptar(HechizoVisitor visitante) {
+		return visitante.visitar(this);
+	}
 }

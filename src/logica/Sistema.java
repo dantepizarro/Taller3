@@ -9,4 +9,9 @@ public interface Sistema {
 	void AgregarAguaPlanta(String nombreHechizo, String tipo, int damage, int efecto1, int efecto2);
 	
 	void AgregarMago(String nombreMago, String[] hechizosMago);
+	
+	void MostrarHechizos();
+	void MostrarMagos();
+	void MostrarHechizosPuntuacion(HechizoVisitor visitor);
+	void MostrarMagosPuntuacion(HechizoVisitor visitor) ;
 }

@@ -69,6 +69,7 @@ public class App {
 			System.out.println("1) Menu Administrador");
 			System.out.println("2) Menu Analista");
 			System.out.println("3) Salir");
+			System.out.print(">");
 			opcion = scan.nextInt();
 			
 			switch(opcion) {
@@ -92,6 +93,7 @@ public class App {
 			System.out.println("5. Modificar Hechizo");
 			System.out.println("6. Eliminar Hechizo");
 			System.out.println("7. Salir");
+			System.out.print(">");
 			opcion = scan.nextInt();
 			
 			switch(opcion) {
@@ -127,6 +129,7 @@ public class App {
 			System.out.println("5. Mostrar todos los Hechizos junto a su puntuacion");
 			System.out.println("6. Mostrar todos los magos junto a su puntuacion");
 			System.out.println("7. Salir");
+			System.out.print(">");
 			opcion = scan.nextInt();
 			
 			switch(opcion) {
@@ -135,12 +138,16 @@ public class App {
 			case 2:
 				break;
 			case 3:
+				sys.MostrarHechizos();
 				break;
 			case 4:
+				sys.MostrarMagos();
 				break;
 			case 5:
+				sys.MostrarHechizosPuntuacion(new PuntuacionVisitor());
 				break;
 			case 6:
+				sys.MostrarMagosPuntuacion(new PuntuacionVisitor());
 				break;
 			case 7:
 				return;
