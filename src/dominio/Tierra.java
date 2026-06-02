@@ -18,5 +18,6 @@ public class Tierra extends Hechizo implements Visitable{
 	public double aceptar(HechizoVisitor visitante) {
 		return visitante.visitar(this);
 	}
+
 	
 }

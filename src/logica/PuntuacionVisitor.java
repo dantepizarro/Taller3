@@ -11,7 +11,7 @@ public class PuntuacionVisitor implements HechizoVisitor {
 	@Override
 	public double visitar(Fuego fuego) {
 		puntaje = fuego.getDamage() * fuego.getDuracionQuemadura();
-		
+
 		return puntaje;
 	}
 

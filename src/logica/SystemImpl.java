@@ -64,8 +64,48 @@ public class SystemImpl implements Sistema{
 	        double puntuacionTotal = 0;
 	        for(Hechizo h : m.getHechizos()) {
 	            puntuacionTotal += ((Visitable) h).aceptar(visitor);
+				
 	        }
 	        System.out.println(m.getNombreMago() + " - Puntuación: " + puntuacionTotal);
 	    }
+	}
+	public void TopMejoresMagos(HechizoVisitor visitor){
+
+		List<Mago> magosTop = new ArrayList<>(magos);
+		for(int a = 0;a<magosTop.size()-1;a++){
+			for(int b = 0;b<magosTop.size()-a-1;b++){
+				if(magosTop.get(b).getpuntuacion(visitor)<magosTop.get(b+1).getpuntuacion(visitor)){
+					Mago temp = magosTop.get(b);
+					magosTop.set(b, magosTop.get(b+1));
+					magosTop.set(b+1, temp);
+				}
+			}
+		}
+		int j= 1;
+		for(int i = 0;i<3;i++){
+			
+			System.out.printf("%d) %s - Puntuación: %.2f\n",j,magosTop.get(i).getNombreMago(),magosTop.get(i).getpuntuacion(visitor));
+			j++;
+		}
+	}
+	public void TopMejoresHechizos(HechizoVisitor visitor){
+		List<Hechizo> hechizosTop = new ArrayList<>(hechizos);
+		for(int a = 0;a<hechizosTop.size()-1;a++){
+			for(int b = 0;b<hechizosTop.size()-a-1;b++){
+				if(((Visitable)hechizosTop.get(b)).aceptar(visitor)<((Visitable)hechizosTop.get(b+1)).aceptar(visitor)){
+					Hechizo temp = hechizosTop.get(b);
+					hechizosTop.set(b, hechizosTop.get(b+1));
+					hechizosTop.set(b+1, temp);
+				}
+			}
+		}
+
+		
+		for(int i = 0;i<10;i++){
+			Hechizo h = hechizosTop.get(i);
+			double puntuacion = ((Visitable) h).aceptar(visitor);
+			System.out.printf("%d) %s - Daño: %.2f\n",i+1,h.getNombreHechizo(),puntuacion);
+			
+		}
 	}
 }

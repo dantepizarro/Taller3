@@ -21,5 +21,13 @@ public class Mago {
 	public void setHechizos(List<Hechizo> hechizos) {
 		this.hechizos = hechizos;
 	}
+	public double getpuntuacion(HechizoVisitor visitor){
+		double puntuacion = 0;
+		for(Hechizo h : hechizos) {
+	            puntuacion += ((Visitable) h).aceptar(visitor);
+				
+	        }
+		return puntuacion;
+	}
 	
 }

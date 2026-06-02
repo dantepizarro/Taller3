@@ -1,5 +1,8 @@
 package logica;
 import java.util.Scanner;
+
+import dominio.HechizoVisitor;
+
 import java.io.File;
 
 
@@ -55,7 +58,7 @@ public class App {
 			while(scanMagos.hasNextLine()) {
 				String[] partes = scanMagos.nextLine().split(";");
 				String NombreMago = partes[0];
-				String[] Hechizos = partes[1].split("|");
+				String[] Hechizos = partes[1].split("\\|");
 				sys.AgregarMago(NombreMago, Hechizos);
 			}
 		}catch(Exception e) {
@@ -134,8 +137,10 @@ public class App {
 			
 			switch(opcion) {
 			case 1:
+				sys.TopMejoresHechizos(new PuntuacionVisitor());
 				break;
 			case 2:
+				sys.TopMejoresMagos(new PuntuacionVisitor());
 				break;
 			case 3:
 				sys.MostrarHechizos();

@@ -14,4 +14,6 @@ public interface Sistema {
 	void MostrarMagos();
 	void MostrarHechizosPuntuacion(HechizoVisitor visitor);
 	void MostrarMagosPuntuacion(HechizoVisitor visitor) ;
+	void TopMejoresMagos(HechizoVisitor visitor);
+	void TopMejoresHechizos(HechizoVisitor visitor);
 }

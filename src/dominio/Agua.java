@@ -1,5 +1,7 @@
 package dominio;
 
+import logica.PuntuacionVisitor;
+
 public class Agua extends Hechizo implements Visitable{
 	public int CantidadHeal,PresionDelAgua;
 
@@ -28,4 +30,6 @@ public class Agua extends Hechizo implements Visitable{
 	public double aceptar(HechizoVisitor visitante) {
 		return visitante.visitar(this);
 	}
+
+	
 }
