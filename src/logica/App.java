@@ -101,6 +101,7 @@ public class App {
 			
 			switch(opcion) {
 			case 1:
+				AgregarMago();
 				break;
 			case 2:
 				break;
@@ -169,8 +170,27 @@ public class App {
 
 		System.out.println("Ingrese el nombre del mago: ");
 		String NombreMago = scan.nextLine();
+		String respuesta;
+		String[] hechizoStrings = null;
+		do{
+			System.out.println("Desea agregarle hechizos?");
+			System.out.print(">");
+			respuesta = scan.nextLine();
+			if(respuesta.equalsIgnoreCase("si")){
+				sys.MostrarHechizos();
+				System.out.println("Que hechizos desea agregar? (hechizo1,hechizo2,etc)");
+				String hechizos = scan.nextLine();
+				hechizoStrings = hechizos.split(",");
+			}
+			sys.AgregarMago(NombreMago, hechizoStrings);
+			//Crear AgregarMagoNuevo, que incluya el bufferwriter
+			
+		}while(respuesta.equalsIgnoreCase("si"));
 	}
-	private static void AgregarHechizo(){
 		
+	private static void AgregarHechizo(){
+		System.out.println();
+
+		System.out.println("Ingrese el nombre del Hechizo: ");
 	}
 }
