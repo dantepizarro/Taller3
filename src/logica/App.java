@@ -163,4 +163,14 @@ public class App {
 			
 		}while(opcion != 7);
 	}
+
+	private static void AgregarMago(){
+		System.out.println();
+
+		System.out.println("Ingrese el nombre del mago: ");
+		String NombreMago = scan.nextLine();
+	}
+	private static void AgregarHechizo(){
+		
+	}
 }
