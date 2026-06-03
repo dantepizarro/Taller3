@@ -98,20 +98,26 @@ public class App {
 			System.out.println("7. Salir");
 			System.out.print(">");
 			opcion = scan.nextInt();
+			scan.nextLine();
 			
 			switch(opcion) {
 			case 1:
 				AgregarMago();
 				break;
 			case 2:
+				// ModificarMago();
 				break;
 			case 3:
+				//EliminarMago();
 				break;
 			case 4:
+				AgregarHechizo();
 				break;
 			case 5:
+				//ModificarHechizo;
 				break;
 			case 6:
+				EliminarHechizo();
 				break;
 			case 7:
 				return;
@@ -135,6 +141,7 @@ public class App {
 			System.out.println("7. Salir");
 			System.out.print(">");
 			opcion = scan.nextInt();
+			scan.nextLine();
 			
 			switch(opcion) {
 			case 1:
@@ -182,49 +189,62 @@ public class App {
 				String hechizos = scan.nextLine();
 				hechizoStrings = hechizos.split(",");
 			}
-			sys.AgregarMago(NombreMago, hechizoStrings);
+			//sys.AgregarMagoNuevos(NombreMago, hechizoStrings);
 			//Crear AgregarMagoNuevo, que incluya el bufferwriter
 			
 		}while(respuesta.equalsIgnoreCase("si"));
 	}
 		
 	private static void AgregarHechizo(){
+		String nombreHechizo;
+		String tipo;
+		int Damage;
 		System.out.println();
 
 		System.out.println("Ingrese el nombre del Hechizo: ");
-		String nombreHechizo = scan.nextLine();
+		System.out.print(">");
+		nombreHechizo = scan.nextLine();
 
 		System.out.println("Ingrese el tipo del Hechizo: ");
-		String tipo = scan.nextLine();
+		System.out.print(">");
+		tipo = scan.nextLine();
 
 		System.out.println("Ingrese el daño del hechizo: ");
-		int Damage = scan.nextInt();
-		switch(tipo) {
-				case "Fuego":
-					System.out.println("Ingrese el valor de Duracion de quemadura: ");
-					int DuracionQuemadura = scan.nextInt();
-					sys.AgregarTierraFuego(nombreHechizo, tipo, Damage, DuracionQuemadura);
-					break;
-				case "Tierra":
-					System.out.println("Ingrese el valor de la mejora de defensa: ");
-					int MejoraDefensa = scan.nextInt();
-					sys.AgregarTierraFuego(nombreHechizo, tipo, Damage, MejoraDefensa);
-					break;
-				case "Planta":
-					System.out.println("Ingrese la duracion del stun: ");
-					int DuracionStun = scan.nextInt();
-					System.out.println("Ingrese la cantidad de plantas: ");
-					int CantPlantas = scan.nextInt();
-					sys.AgregarAguaPlanta(nombreHechizo, tipo, Damage,DuracionStun, CantPlantas);
-					break;
-				case "Agua":
-					System.out.println("Ingrese la cantidad de heal: ");
-					int CantidadHeal = scan.nextInt();
-					System.out.println("Ingrese el daño de presion del agua: ");
-					int PresionDelAgua = scan.nextInt();
-					sys.AgregarAguaPlanta(nombreHechizo, tipo, Damage, CantidadHeal, PresionDelAgua);
-					break;
+		System.out.print(">");
+		String damagestr = scan.nextLine();
+		Damage = Integer.parseInt(damagestr);
+		if(tipo.equalsIgnoreCase("fuego")) {
 				
-				}
+					System.out.println("Ingrese el valor de Duracion de quemadura: ");
+					String DuracionQuemadura = scan.nextLine();
+					sys.AgregarTierraFuegoNuevos(nombreHechizo, tipo, Damage, Integer.parseInt(DuracionQuemadura));
+		}else if (tipo.equalsIgnoreCase("tierra")) {
+					System.out.println("Ingrese el valor de la mejora de defensa: ");
+					String MejoraDefensa = scan.nextLine();
+					sys.AgregarTierraFuegoNuevos(nombreHechizo, tipo, Damage, Integer.parseInt(MejoraDefensa));
+		}else if (tipo.equalsIgnoreCase("planta")) {
+				
+					System.out.println("Ingrese la duracion del stun: ");
+					String DuracionStun = scan.nextLine();
+					System.out.println("Ingrese la cantidad de plantas: ");
+					String CantPlantas = scan.nextLine();
+					sys.AgregarAguaPlantaNuevos(nombreHechizo, tipo, Damage,Integer.parseInt(DuracionStun), Integer.parseInt(CantPlantas));
+		}else {
+					System.out.println("Ingrese la cantidad de heal: ");
+					String CantidadHeal = scan.nextLine();
+					System.out.println("Ingrese el daño de presion del agua: ");
+					String PresionDelAgua = scan.nextLine();
+					sys.AgregarAguaPlantaNuevos(nombreHechizo, tipo, Damage, Integer.parseInt(CantidadHeal), Integer.parseInt(PresionDelAgua));
+			}				
+				
+	}
+	public static void EliminarHechizo() {
+		int opcion;
+		sys.MostrarHechizos();
+		System.out.println("Ingresa el numero del hechizo que desea eliminar ");
+		System.out.print(">");
+		String op = scan.nextLine();
+		opcion = Integer.parseInt(op) - 1 ;
+		sys.EliminarHechizo(opcion);
 	}
 }

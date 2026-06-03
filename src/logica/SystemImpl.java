@@ -2,6 +2,8 @@ package logica;
 
 import dominio.*;
 import java.util.List;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class SystemImpl implements Sistema{
@@ -108,4 +110,42 @@ public class SystemImpl implements Sistema{
 			
 		}
 	}
+
+	@Override
+	public void AgregarTierraFuegoNuevos(String nombreHechizo, String tipo, int damage, int efecto) {
+		if(tipo.equalsIgnoreCase("fuego")) {
+			Fuego f = new Fuego(nombreHechizo,tipo,damage,efecto);
+			hechizos.add(f);
+			f.aceptar(new GuardarHechizo());
+		}else {
+			Tierra t = new Tierra(nombreHechizo,tipo,damage,efecto);
+			hechizos.add(t);
+			t.aceptar(new GuardarHechizo());
+		}
+	}
+
+	@Override
+	public void AgregarAguaPlantaNuevos(String nombreHechizo, String tipo, int damage, int efecto1, int efecto2) {
+		if(tipo.equalsIgnoreCase("planta")) {
+			Planta p = new Planta(nombreHechizo,tipo,damage,efecto1,efecto2);
+			hechizos.add(p);
+			p.aceptar(new GuardarHechizo());
+		}else {
+			Agua a = new Agua(nombreHechizo,tipo,damage,efecto1,efecto2);
+			hechizos.add(a);
+			a.aceptar(new GuardarHechizo());
+		}
+	}
+
+	@Override
+	public void EliminarHechizo(int indice) {
+		//falta modificar el txt
+		
+		hechizos.remove(indice);
+	
+		
+	}
+
+
+	
 }

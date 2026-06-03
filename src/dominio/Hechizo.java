@@ -1,5 +1,7 @@
 package dominio;
 
+import logica.GuardarHechizo;
+
 public class Hechizo {
 	protected String NombreHechizo,Tipo;
 	protected int Damage;
@@ -25,6 +27,9 @@ public class Hechizo {
 	}
 	public void setDamage(int damage) {
 		Damage = damage;
+	}
+	public void aceptar(GuardarHechizo guardarHechizo) {
+		
 	}
 	
 	
