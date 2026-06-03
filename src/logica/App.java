@@ -192,5 +192,39 @@ public class App {
 		System.out.println();
 
 		System.out.println("Ingrese el nombre del Hechizo: ");
+		String nombreHechizo = scan.nextLine();
+
+		System.out.println("Ingrese el tipo del Hechizo: ");
+		String tipo = scan.nextLine();
+
+		System.out.println("Ingrese el daño del hechizo: ");
+		int Damage = scan.nextInt();
+		switch(tipo) {
+				case "Fuego":
+					System.out.println("Ingrese el valor de Duracion de quemadura: ");
+					int DuracionQuemadura = scan.nextInt();
+					sys.AgregarTierraFuego(nombreHechizo, tipo, Damage, DuracionQuemadura);
+					break;
+				case "Tierra":
+					System.out.println("Ingrese el valor de la mejora de defensa: ");
+					int MejoraDefensa = scan.nextInt();
+					sys.AgregarTierraFuego(nombreHechizo, tipo, Damage, MejoraDefensa);
+					break;
+				case "Planta":
+					System.out.println("Ingrese la duracion del stun: ");
+					int DuracionStun = scan.nextInt();
+					System.out.println("Ingrese la cantidad de plantas: ");
+					int CantPlantas = scan.nextInt();
+					sys.AgregarAguaPlanta(nombreHechizo, tipo, Damage,DuracionStun, CantPlantas);
+					break;
+				case "Agua":
+					System.out.println("Ingrese la cantidad de heal: ");
+					int CantidadHeal = scan.nextInt();
+					System.out.println("Ingrese el daño de presion del agua: ");
+					int PresionDelAgua = scan.nextInt();
+					sys.AgregarAguaPlanta(nombreHechizo, tipo, Damage, CantidadHeal, PresionDelAgua);
+					break;
+				
+				}
 	}
 }
