@@ -103,9 +103,10 @@ public class App {
 			switch(opcion) {
 			case 1:
 				AgregarMagoNuevo();
+				//por terminar
 				break;
 			case 2:
-				// ModificarMago();
+				ModificarMago();
 				break;
 			case 3:
 				//EliminarMago();
@@ -194,7 +195,33 @@ public class App {
 			
 		}while(respuesta.equalsIgnoreCase("si"));
 	}
+	public static void ModificarMago() {
+		int opcion;
+		sys.MostrarMagos();
+		System.out.println("Ingrese el numero del mago a modificar");
+		System.out.print(">");
+		String eleccion = scan.nextLine();
+		opcion = Integer.parseInt(eleccion) - 1;
+		System.out.println("¿Que te gustaria modificar su nombre o sus hehcizos? \n1) Nombre \n2) Agregar Hechizo \n3) Eliminar Hechizo");
+		System.out.print(">");
+		int tipo = Integer.parseInt(scan.nextLine());
+		switch (tipo) {
+		case 1:
+			System.out.println("Ingrese el nuevo nombre del Mago");
+			String nombre = scan.nextLine();
+			sys.ModificarMagoNombre(opcion, nombre);
+			break;
+		case 2:
+			System.out.println("Ingrese el hechizo que quiere agregar");
+			break;
+		case 3:
+			System.out.println("Ingrese el hechizo que quiere eliminar");
+			break;
+		default:
+			System.out.println("Opcion no valida");
+		}
 		
+	}	
 	private static void AgregarHechizo(){
 		String nombreHechizo;
 		String tipo;

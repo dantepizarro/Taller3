@@ -16,7 +16,9 @@ public interface Sistema {
 	void MostrarMagosPuntuacion(HechizoVisitor visitor) ;
 	void TopMejoresMagos(HechizoVisitor visitor);
 	void TopMejoresHechizos(HechizoVisitor visitor);
-	//void ModificarMago();
+	void ModificarMagoNombre(int indice, String newnombre);
+	void ModificarMagoHechizos();
+	void ReescribirMagos();
 	void EliminarMago(int indice);
 	void AgregarTierraFuegoNuevos(String nombreHechizo, String tipo, int damage, int efecto);
 	void AgregarAguaPlantaNuevos(String nombreHechizo, String tipo, int damage, int efecto1, int efecto2);

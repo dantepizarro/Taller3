@@ -182,6 +182,45 @@ public class SystemImpl implements Sistema{
 		String mago = magos.get(indice).getNombreMago();
 		magos.remove(indice);
 	}
+	public void ModificarMagoNombre(int indice,String newnombre) {
+		magos.get(indice).setNombreMago(newnombre);
+		ReescribirMagos();
+	}
+
+	@Override
+	public void ModificarMagoHechizos() {
+		
+	}
+
+	@Override
+	public void ReescribirMagos() {
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter("Magos.txt",false));
+			bw.close();
+		}catch (Exception e) {
+			System.out.println("Error al borrar los magos");
+		}
+		
+		for (Mago m : magos) {
+			try {
+				BufferedWriter bw = new BufferedWriter(new FileWriter("Magos.txt",true));
+				String Hechizos = "";
+				for (int i = 0; i < m.getHechizos().size(); i++) {
+					if (i == 0) {
+						Hechizos += m.getHechizos().get(i).getNombreHechizo();
+						
+					}else {
+						Hechizos += "|" + m.getHechizos().get(i).getNombreHechizo();
+					}
+				}
+				bw.write(m.getNombreMago()+ ";" + Hechizos);
+				bw.newLine();
+				bw.close();
+			}catch(Exception e ) {
+				System.out.println("Error al reescribir los magos");
+			}
+		}
+	}
 
 	
 

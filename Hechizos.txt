@@ -75,7 +75,6 @@ Explosión Ígnea;Fuego;61;3
 Martillazo;Agua;108;54,448
 Látigo Cepa;Planta;23;3,4
 Pirotecnia;Fuego;52;3
-Disparo Lodo;Tierra;48;29
 Latigazo;Planta;93;1,1
 Envite Igneo;Fuego;47;4
 Patada Ígnea;Fuego;82;1
