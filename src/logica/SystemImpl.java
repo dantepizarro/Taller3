@@ -4,6 +4,7 @@ import dominio.*;
 import java.util.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SystemImpl implements Sistema{
@@ -129,19 +130,50 @@ public class SystemImpl implements Sistema{
 		if(tipo.equalsIgnoreCase("planta")) {
 			Planta p = new Planta(nombreHechizo,tipo,damage,efecto1,efecto2);
 			hechizos.add(p);
-			p.aceptar(new GuardarHechizo());
+			p.aceptar(new GuardarHechizo(true));
 		}else {
 			Agua a = new Agua(nombreHechizo,tipo,damage,efecto1,efecto2);
 			hechizos.add(a);
-			a.aceptar(new GuardarHechizo());
+			a.aceptar(new GuardarHechizo(true));
 		}
 	}
 
 	@Override
 	public void EliminarHechizo(int indice) {
 		//falta modificar el txt
-		
+		String hechizo = hechizos.get(indice).getNombreHechizo();
 		hechizos.remove(indice);
+		for(Mago m : magos){
+			for(int i = 0; i<m.getHechizos().size(); i++){
+				if(m.getHechizos().get(i).getNombreHechizo().equalsIgnoreCase(hechizo)){
+					m.getHechizos().remove(i);
+					i--;
+				}
+			}
+		}
+		
+
+		GuardarHechizo guardador = new GuardarHechizo(false);
+		for(Hechizo h : hechizos){
+			((Visitable) h).aceptar(guardador);
+		}
+		try{
+			BufferedWriter bw = new BufferedWriter(new FileWriter("Magos.txt"));
+			for(Mago m: magos){
+				String linea = m.getNombreMago() + ";";
+				for(int i = 0;i<m.getHechizos().size();i++){
+					linea = linea + m.getHechizos().get(i).getNombreHechizo();
+					if(i<m.getHechizos().size() -1){
+						linea = linea + "|";
+					}
+				}
+				bw.write(linea);
+				bw.newLine();
+			}
+			bw.close();
+		}catch(IOException e){
+			System.out.println("problemas reescribiendo archivos");
+		}
 	
 		
 	}

@@ -246,5 +246,6 @@ public class App {
 		String op = scan.nextLine();
 		opcion = Integer.parseInt(op) - 1 ;
 		sys.EliminarHechizo(opcion);
+		System.out.println("Hechizo eliminado correctamente");
 	}
 }

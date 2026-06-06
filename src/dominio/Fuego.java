@@ -1,5 +1,7 @@
 package dominio;
 
+import logica.GuardarHechizo;
+
 public class Fuego extends Hechizo implements Visitable{
 	public int DuracionQuemadura;
 	
@@ -18,5 +20,7 @@ public class Fuego extends Hechizo implements Visitable{
 	public double aceptar(HechizoVisitor visitante) {
 		return visitante.visitar(this);
 	}
-	
+	public void aceptar(GuardarHechizo guardarHechizo) {
+    	guardarHechizo.visitar(this);
+	}
 }

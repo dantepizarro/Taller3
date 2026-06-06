@@ -1,5 +1,7 @@
 package dominio;
 
+import logica.GuardarHechizo;
+
 public class Tierra extends Hechizo implements Visitable{
 	public int MejoraDefensa;
 
@@ -18,6 +20,8 @@ public class Tierra extends Hechizo implements Visitable{
 	public double aceptar(HechizoVisitor visitante) {
 		return visitante.visitar(this);
 	}
-
+	public void aceptar(GuardarHechizo guardarHechizo) {
+    	guardarHechizo.visitar(this);
+	}
 	
 }

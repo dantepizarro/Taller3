@@ -3,7 +3,6 @@ Tumba Rocas;Tierra;18;40
 Polen Somnífero;Planta;81;3,10
 Bofetón Lodo;Tierra;65;24
 Muro de Arena;Tierra;100;33
-Clorofila;Planta;102;3,2
 Energibola;Planta;79;2,2
 Hidroariete;Agua;39;24,261
 Calcinación;Fuego;21;4
@@ -77,7 +76,6 @@ Martillazo;Agua;108;54,448
 Látigo Cepa;Planta;23;3,4
 Pirotecnia;Fuego;52;3
 Disparo Lodo;Tierra;48;29
-Giro Fuego;Fuego;119;2
 Latigazo;Planta;93;1,1
 Envite Igneo;Fuego;47;4
 Patada Ígnea;Fuego;82;1
