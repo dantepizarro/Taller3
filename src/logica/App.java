@@ -102,7 +102,7 @@ public class App {
 			
 			switch(opcion) {
 			case 1:
-				AgregarMago();
+				AgregarMagoNuevo();
 				break;
 			case 2:
 				// ModificarMago();
@@ -172,7 +172,7 @@ public class App {
 		}while(opcion != 7);
 	}
 
-	private static void AgregarMago(){
+	private static void AgregarMagoNuevo(){
 		System.out.println();
 
 		System.out.println("Ingrese el nombre del mago: ");
@@ -189,7 +189,7 @@ public class App {
 				String hechizos = scan.nextLine();
 				hechizoStrings = hechizos.split(",");
 			}
-			//sys.AgregarMagoNuevos(NombreMago, hechizoStrings);
+			sys.AgregarMago(NombreMago, hechizoStrings);
 			//Crear AgregarMagoNuevo, que incluya el bufferwriter
 			
 		}while(respuesta.equalsIgnoreCase("si"));
@@ -238,7 +238,7 @@ public class App {
 			}				
 				
 	}
-	public static void EliminarHechizo() {
+	private static void EliminarHechizo() {
 		int opcion;
 		sys.MostrarHechizos();
 		System.out.println("Ingresa el numero del hechizo que desea eliminar ");
@@ -247,5 +247,14 @@ public class App {
 		opcion = Integer.parseInt(op) - 1 ;
 		sys.EliminarHechizo(opcion);
 		System.out.println("Hechizo eliminado correctamente");
+	}
+	private static void EliminarMago(){
+		int opcion;
+		sys.MostrarMagos();
+		System.out.println("Ingrese el numero del mago que desea eliminar: ");
+		System.out.println(">");
+		String op = scan.nextLine();
+		opcion = Integer.parseInt(op) -1 ;
+		sys.EliminarMago(opcion);
 	}
 }

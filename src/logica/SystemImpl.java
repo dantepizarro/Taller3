@@ -140,7 +140,6 @@ public class SystemImpl implements Sistema{
 
 	@Override
 	public void EliminarHechizo(int indice) {
-		//falta modificar el txt
 		String hechizo = hechizos.get(indice).getNombreHechizo();
 		hechizos.remove(indice);
 		for(Mago m : magos){
@@ -177,6 +176,14 @@ public class SystemImpl implements Sistema{
 	
 		
 	}
+
+	@Override
+	public void EliminarMago(int indice) {
+		String mago = magos.get(indice).getNombreMago();
+		magos.remove(indice);
+	}
+
+	
 
 
 	
