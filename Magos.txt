@@ -1,4 +1,4 @@
-Tono;Sofoco|Pirotecnia|Vórtice Ígneo
+Tono;Pirotecnia|Vórtice Ígneo
 Ferran;Salmuera|Envite Igneo|Poder Pasado|Rueda Fuego|Hidroariete|Burbuja
 Sasa;Infierno|Martillazo|Hidroariete|Envite Igneo
 Mul;Gigadrenado|Rayo Burbuja|Danza Lluvia|Pistola Agua
@@ -6,7 +6,7 @@ Branco;Arraigo|Silvato|Danza Lluvia
 MartinNegro;Acua Aro|Tumba Rocas|Polen Somnífero|Escaldar|Cascada|Pirotecnia
 EmaArdillaRabiosa;Origen Pulso|Fuego Sagrado|Cascada|Llamarada Azul
 Danini;Fuego Sagrado|Pedrada|Envite Igneo|Hierba Lazo|Surf
-Maxi;Explosión Ígnea|Envite Igneo|Agua Lodosa
+Dante;Explosión Ígnea|Envite Igneo|Agua Lodosa|Terratemblor
 MartinAyudanteHermoso;Salmuera|Colmillo Igneo|Excavar|Calcinación
 Estefania;Hoja Afilada|Burbuja|Acua Jet|Energibola|Fuego Sagrado|Agua Lodosa|Llamarada Azul
 Churrasquita;Origen Pulso|Infierno|Silvato|Hoja Mágica|Colmillo Igneo

@@ -12,12 +12,14 @@ public interface Sistema {
 	
 	void MostrarHechizos();
 	void MostrarMagos();
+	void MostrarHechizosMago(int indice);
 	void MostrarHechizosPuntuacion(HechizoVisitor visitor);
 	void MostrarMagosPuntuacion(HechizoVisitor visitor) ;
 	void TopMejoresMagos(HechizoVisitor visitor);
 	void TopMejoresHechizos(HechizoVisitor visitor);
 	void ModificarMagoNombre(int indice, String newnombre);
-	void ModificarMagoHechizos();
+	void ModificarMagoAddHechizos(int indice, int indicehechizo);
+	void ModificarMagoDeleteHechizos(int indice, int indicehechizo);
 	void ReescribirMagos();
 	void EliminarMago(int indice);
 	void AgregarTierraFuegoNuevos(String nombreHechizo, String tipo, int damage, int efecto);

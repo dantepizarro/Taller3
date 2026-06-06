@@ -1,6 +1,8 @@
 package logica;
 
 import dominio.*;
+
+
 import java.util.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -188,10 +190,16 @@ public class SystemImpl implements Sistema{
 	}
 
 	@Override
-	public void ModificarMagoHechizos() {
-		
+	public void ModificarMagoAddHechizos(int indice , int indicehechizo) {
+		Hechizo h = hechizos.get(indicehechizo);
+		magos.get(indice).getHechizos().add(h);
+		ReescribirMagos();
 	}
-
+	public void ModificarMagoDeleteHechizos(int indice , int indicehechizo) {
+		
+		magos.get(indice).getHechizos().remove(indicehechizo);
+		ReescribirMagos();
+	}
 	@Override
 	public void ReescribirMagos() {
 		try {
@@ -222,6 +230,19 @@ public class SystemImpl implements Sistema{
 		}
 	}
 
+	@Override
+	public void MostrarHechizosMago(int indice) {
+		String magomod = magos.get(indice).getNombreMago();
+		for (Mago m : magos) {
+			if (m.getNombreMago().equalsIgnoreCase(magomod)) {
+				for (int i = 0; i<m.getHechizos().size();i++) {
+					System.out.println( (i+1) + ") " +m.getHechizos().get(i).getNombreHechizo());
+				}
+			}
+		}
+		
+	}
+	
 	
 
 

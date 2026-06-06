@@ -212,10 +212,18 @@ public class App {
 			sys.ModificarMagoNombre(opcion, nombre);
 			break;
 		case 2:
+			sys.MostrarHechizos();
 			System.out.println("Ingrese el hechizo que quiere agregar");
+			System.out.print(">");
+			int numhechizo = Integer.parseInt(scan.nextLine()) -1;
+			sys.ModificarMagoAddHechizos(opcion , numhechizo);
 			break;
 		case 3:
+			sys.MostrarHechizosMago(opcion);
 			System.out.println("Ingrese el hechizo que quiere eliminar");
+			System.out.print(">");
+			int numhechizoD = Integer.parseInt(scan.nextLine())- 1;
+			sys.ModificarMagoDeleteHechizos(opcion, numhechizoD);
 			break;
 		default:
 			System.out.println("Opcion no valida");
