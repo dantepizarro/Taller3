@@ -183,6 +183,8 @@ public class SystemImpl implements Sistema{
 	public void EliminarMago(int indice) {
 		String mago = magos.get(indice).getNombreMago();
 		magos.remove(indice);
+		ReescribirMagos();
+
 	}
 	public void ModificarMagoNombre(int indice,String newnombre) {
 		magos.get(indice).setNombreMago(newnombre);
@@ -241,6 +243,118 @@ public class SystemImpl implements Sistema{
 			}
 		}
 		
+	}
+
+	@Override
+	public void AgregarMagosNuevos(String NombreMago, String[] hechizosmago) {
+		List<Hechizo> HechizosMago = new ArrayList<Hechizo>();
+		for(int i = 0;i<hechizosmago.length;i++) {
+			int  Indicehechizo = Integer.parseInt(hechizosmago[i])-1;
+			HechizosMago.add(hechizos.get(Indicehechizo));
+			System.out.println(HechizosMago.size());
+			
+		}
+		magos.add(new Mago(NombreMago,HechizosMago));
+		ReescribirMagos();
+	}
+
+	@Override
+	public void ModificarHechizo(String cambio,int opcion, int op) {
+		switch (op) {
+			case 1:
+				hechizos.get(opcion).setNombreHechizo(cambio);
+				ReescribirMagos();
+				ReescribirHechizos();	
+				break;
+		
+			case 2:
+				int DamageNuevo = Integer.parseInt(cambio);
+				hechizos.get(opcion).setDamage(DamageNuevo);
+				ReescribirHechizos();
+				ReescribirMagos();
+				break;
+			case 3:
+				int efectoNuevo = Integer.parseInt(cambio);
+    			Hechizo h = hechizos.get(opcion);
+    			switch (h.getTipo().toLowerCase()) {
+        			case "fuego":
+            			((Fuego) h).setDuracionQuemadura(efectoNuevo);
+            			break;
+					case "tierra":
+						((Tierra) h).setMejoraDefensa(efectoNuevo);
+						break;
+					case "agua":
+						((Agua) h).setCantidadHeal(efectoNuevo);
+						break;
+					case "planta":
+						((Planta) h).setDuracionStun(efectoNuevo);
+						break;
+    			}
+				ReescribirHechizos();
+				ReescribirMagos();
+				break;
+			case 4:
+				 int efecto2Nuevo = Integer.parseInt(cambio);
+				 h = hechizos.get(opcion);
+				switch (h.getTipo().toLowerCase()) {
+					case "fuego":
+						((Fuego) h).setDuracionQuemadura(efecto2Nuevo);
+						break;
+					case "tierra":
+						((Tierra) h).setMejoraDefensa(efecto2Nuevo);
+						break;
+					case "agua":
+						((Agua) h).setCantidadHeal(efecto2Nuevo);
+						break;
+					case "planta":
+						((Planta) h).setDuracionStun(efecto2Nuevo);
+						break;
+				}
+				ReescribirHechizos();
+				ReescribirMagos();
+				break;
+					}
+	}
+
+	@Override
+	public void BuscarHechizo(int indice) {
+		Hechizo h = hechizos.get(indice);
+		System.out.println(h);
+	}
+
+	@Override
+	public void ReescribirHechizos() {
+		GuardarHechizo guardador = new GuardarHechizo(false);
+		for(Hechizo h : hechizos){
+			((Visitable) h).aceptar(guardador);
+		}
+	}
+	public void MostrarOpcionesModificar(int indice) {
+    Hechizo h = hechizos.get(indice);
+    System.out.println("1. Nombre: " + h.getNombreHechizo());
+    System.out.println("2. Daño: " + h.getDamage());
+    
+    switch (h.getTipo().toLowerCase()) {
+        case "fuego":
+            System.out.println("3. Duración Quemadura: " + ((Fuego) h).getDuracionQuemadura());
+            break;
+        case "tierra":
+            System.out.println("3. Mejora Defensa: " + ((Tierra) h).getMejoraDefensa());
+            break;
+        case "agua":
+            System.out.println("3. Cantidad Heal: " + ((Agua) h).getCantidadHeal());
+            System.out.println("4. Presión del Agua: " + ((Agua) h).getPresionDelAgua());
+            break;
+        case "planta":
+            System.out.println("3. Duración Stun: " + ((Planta) h).getDuracionStun());
+            System.out.println("4. Cantidad Plantas: " + ((Planta) h).getCantPlantas());
+            break;
+    }
+}
+
+	@Override
+	public String getTipoHechizo(int opcion) {
+		return hechizos.get(opcion).getTipo();
 	}
 	
 	

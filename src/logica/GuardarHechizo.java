@@ -49,6 +49,7 @@ public class GuardarHechizo implements HechizoVisitor{
 			if(append) bw.newLine();
 			bw.write(linea);
 			bw.close();
+			append = true;
 		}catch(Exception e) {
 			System.out.println("Problemas al guardar el hechizo");
 		}

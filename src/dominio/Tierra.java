@@ -23,5 +23,9 @@ public class Tierra extends Hechizo implements Visitable{
 	public void aceptar(GuardarHechizo guardarHechizo) {
     	guardarHechizo.visitar(this);
 	}
-	
+	@Override
+	public String toString() {
+		return "1) NombreHechizo= " + NombreHechizo + "\n2) Damage= " + Damage + "\n3) Mejora Defensa= "
+				+ MejoraDefensa;
+	}
 }

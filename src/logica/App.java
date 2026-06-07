@@ -103,19 +103,18 @@ public class App {
 			switch(opcion) {
 			case 1:
 				AgregarMagoNuevo();
-				//por terminar
 				break;
 			case 2:
 				ModificarMago();
 				break;
 			case 3:
-				//EliminarMago();
+				EliminarMago();
 				break;
 			case 4:
 				AgregarHechizo();
 				break;
 			case 5:
-				//ModificarHechizo;
+				ModificarHechizo();
 				break;
 			case 6:
 				EliminarHechizo();
@@ -172,30 +171,28 @@ public class App {
 			
 		}while(opcion != 7);
 	}
-
 	private static void AgregarMagoNuevo(){
 		System.out.println();
 
 		System.out.println("Ingrese el nombre del mago: ");
 		String NombreMago = scan.nextLine();
 		String respuesta;
-		String[] hechizoStrings = null;
-		do{
-			System.out.println("Desea agregarle hechizos?");
-			System.out.print(">");
-			respuesta = scan.nextLine();
-			if(respuesta.equalsIgnoreCase("si")){
-				sys.MostrarHechizos();
-				System.out.println("Que hechizos desea agregar? (hechizo1,hechizo2,etc)");
-				String hechizos = scan.nextLine();
-				hechizoStrings = hechizos.split(",");
-			}
-			sys.AgregarMago(NombreMago, hechizoStrings);
-			//Crear AgregarMagoNuevo, que incluya el bufferwriter
+		String[] hechizoStrings= {};
+		
+		System.out.println("Desea agregarle hechizos?");
+		System.out.print(">");
+		respuesta = scan.nextLine();
+		if(respuesta.equalsIgnoreCase("si")){
+			sys.MostrarHechizos();
+			System.out.println("Que hechizos desea agregar? (hechizo1,hechizo2,etc)");
+			String hechizos = scan.nextLine();
+			hechizoStrings = hechizos.split(",");
+		}
+		sys.AgregarMagosNuevos(NombreMago, hechizoStrings);
 			
-		}while(respuesta.equalsIgnoreCase("si"));
+		
 	}
-	public static void ModificarMago() {
+	private static void ModificarMago() {
 		int opcion;
 		sys.MostrarMagos();
 		System.out.println("Ingrese el numero del mago a modificar");
@@ -292,4 +289,33 @@ public class App {
 		opcion = Integer.parseInt(op) -1 ;
 		sys.EliminarMago(opcion);
 	}
+	private static void ModificarHechizo(){
+    	sys.MostrarHechizos();
+    	System.out.println("Ingresa el numero del hechizo que desea modificar");
+    	int opcion = Integer.parseInt(scan.nextLine()) - 1;
+    
+    	sys.MostrarOpcionesModificar(opcion);
+    
+    	System.out.print(">");
+		int op = Integer.parseInt(scan.nextLine());
+		
+		String tipo = sys.getTipoHechizo(opcion);
+		int maxOp; 
+		if(tipo.equalsIgnoreCase("agua") || tipo.equalsIgnoreCase("planta")){
+			maxOp = 4;
+		}else{
+			maxOp = 3;
+		}
+		if (op < 1 || op > maxOp) {
+			System.out.println("Opción inválida para hechizo de tipo " + tipo);
+			return;
+		}
+		
+		System.out.println("Ingrese el nuevo valor: ");
+		String cambio = scan.nextLine();
+		sys.ModificarHechizo(cambio, opcion, op);
+	}
+			
+		
 }
+
