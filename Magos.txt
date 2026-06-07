@@ -1,4 +1,4 @@
-Ferran;Salmuera|Envite Igneo|Poder Pasado|Rueda Fuego|Hidroariete|Burbuja
+Ferran;Salmuera|Envite Igneo|Poder Pasado|Rueda Fuego|Hidroariete
 Sasa;Infierno|Martillazo|Hidroariete|Envite Igneo
 Mul;Gigadrenado|Rayo Burbuja|Danza Lluvia|Pistola Agua
 Branco;Arraigo|Silvato|Danza Lluvia

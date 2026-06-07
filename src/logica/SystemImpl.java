@@ -234,15 +234,10 @@ public class SystemImpl implements Sistema{
 
 	@Override
 	public void MostrarHechizosMago(int indice) {
-		String magomod = magos.get(indice).getNombreMago();
-		for (Mago m : magos) {
-			if (m.getNombreMago().equalsIgnoreCase(magomod)) {
-				for (int i = 0; i<m.getHechizos().size();i++) {
-					System.out.println( (i+1) + ") " +m.getHechizos().get(i).getNombreHechizo());
+		List<Hechizo> lista = magos.get(indice).getHechizos();
+				for (int i = 0; i<lista.size();i++) {
+					System.out.println( (i+1) + ") " +lista.get(i).getNombreHechizo());
 				}
-			}
-		}
-		
 	}
 
 	@Override
@@ -297,17 +292,11 @@ public class SystemImpl implements Sistema{
 				 int efecto2Nuevo = Integer.parseInt(cambio);
 				 h = hechizos.get(opcion);
 				switch (h.getTipo().toLowerCase()) {
-					case "fuego":
-						((Fuego) h).setDuracionQuemadura(efecto2Nuevo);
-						break;
-					case "tierra":
-						((Tierra) h).setMejoraDefensa(efecto2Nuevo);
-						break;
 					case "agua":
-						((Agua) h).setCantidadHeal(efecto2Nuevo);
+						((Agua) h).setPresionDelAgua(efecto2Nuevo);
 						break;
 					case "planta":
-						((Planta) h).setDuracionStun(efecto2Nuevo);
+						((Planta) h).setCantPlantas(efecto2Nuevo);
 						break;
 				}
 				ReescribirHechizos();
