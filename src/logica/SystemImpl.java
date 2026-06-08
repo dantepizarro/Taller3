@@ -250,6 +250,10 @@ public class SystemImpl implements Sistema{
 	 * MOdifica el nombre de un mago seleccionado
 	 */
 	public void ModificarMagoNombre(int indice,String newnombre) {
+		if(indice < 0 || indice > magos.size()-1){
+			System.out.println("indice de mago invalida");
+			return;
+		}
 		magos.get(indice).setNombreMago(newnombre);
 		ReescribirMagos();
 	}
@@ -340,6 +344,10 @@ public class SystemImpl implements Sistema{
 		List<Hechizo> HechizosMago = new ArrayList<Hechizo>();
 		for(int i = 0;i<hechizosmago.length;i++) {
 			int  Indicehechizo = Integer.parseInt(hechizosmago[i])-1;
+			if(Indicehechizo <0 || Indicehechizo>hechizos.size()-1){
+				System.out.println("Indice de hechizo invalida");
+				return;
+			}
 			HechizosMago.add(hechizos.get(Indicehechizo));
 			System.out.println(HechizosMago.size());
 			
