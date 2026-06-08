@@ -4,7 +4,10 @@ import java.util.Scanner;
 import dominio.HechizoVisitor;
 
 import java.io.File;
-
+/**
+ * Antonio Arancibia 22.313.079-8 ICCI
+ * Dante Pizarro 22.216.463-k ICCI
+ */
 /**
  * Aqui se desarollara la interaccion con el usuario a traves de la consola
  * Se tendra un scanner global el cual se encargara de solicitar datos al usuarip
@@ -90,7 +93,10 @@ public class App {
 			System.out.println("3) Salir");
 			System.out.print(">");
 			opcion = scan.nextInt();
-			
+			if(opcion > 3 || opcion < 1){
+				System.out.println("opcion invalida");
+				break;
+			}
 			switch(opcion) {
 			case 1:
 				menuAdministrador();
@@ -119,7 +125,10 @@ public class App {
 			System.out.print(">");
 			opcion = scan.nextInt();
 			scan.nextLine();
-			
+			if(opcion >7 || opcion < 1){
+				System.out.println("opcion invalida");
+				break;
+			}
 			switch(opcion) {
 			case 1:
 				AgregarMagoNuevo();
@@ -166,7 +175,10 @@ public class App {
 			System.out.print(">");
 			opcion = scan.nextInt();
 			scan.nextLine();
-			
+			if(opcion > 7|| opcion < 1){
+				System.out.println("opcion invalida");
+				break;
+			}
 			switch(opcion) {
 			case 1:
 				sys.TopMejoresHechizos(new PuntuacionVisitor());
@@ -231,9 +243,17 @@ public class App {
 		System.out.print(">");
 		String eleccion = scan.nextLine();
 		opcion = Integer.parseInt(eleccion) - 1;
+		if(opcion < 0){
+			System.out.println("opcion invalida");
+			return;
+		}
 		System.out.println("¿Que te gustaria modificar su nombre o sus hehcizos? \n1) Nombre \n2) Agregar Hechizo \n3) Eliminar Hechizo");
 		System.out.print(">");
 		int tipo = Integer.parseInt(scan.nextLine());
+		if(tipo < 1 || tipo > 3){
+			System.out.println("opcion invalida");
+			return;
+		}
 		switch (tipo) {
 		case 1:
 			System.out.println("Ingrese el nuevo nombre del Mago");
@@ -281,6 +301,10 @@ public class App {
 		System.out.print(">");
 		String damagestr = scan.nextLine();
 		Damage = Integer.parseInt(damagestr);
+		if(Damage<0){
+			System.out.println("El daño no puede ser negativo");
+			return;
+		}
 		if(tipo.equalsIgnoreCase("fuego")) {
 				
 					System.out.println("Ingrese el valor de Duracion de quemadura: ");

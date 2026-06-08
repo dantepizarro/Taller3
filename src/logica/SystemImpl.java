@@ -154,6 +154,10 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void AgregarTierraFuegoNuevos(String nombreHechizo, String tipo, int damage, int efecto) {
+		if(efecto < 0){
+			System.out.println("el efecto no puede tener valor negativo");
+			return;
+		}
 		if(tipo.equalsIgnoreCase("fuego")) {
 			Fuego f = new Fuego(nombreHechizo,tipo,damage,efecto);
 			hechizos.add(f);
@@ -169,6 +173,10 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void AgregarAguaPlantaNuevos(String nombreHechizo, String tipo, int damage, int efecto1, int efecto2) {
+		if(efecto1 <0 || efecto2<0){
+			System.out.println("Los efectos no pueden tener valor negativo");
+			return;
+		}
 		if(tipo.equalsIgnoreCase("planta")) {
 			Planta p = new Planta(nombreHechizo,tipo,damage,efecto1,efecto2);
 			hechizos.add(p);
@@ -184,6 +192,10 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void EliminarHechizo(int indice) {
+		if(indice <0|| indice>hechizos.size()-1){
+			System.out.println("opcion invalida");
+			return;
+		}
 		String hechizo = hechizos.get(indice).getNombreHechizo();
 		hechizos.remove(indice);
 		for(Mago m : magos){
@@ -225,6 +237,10 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void EliminarMago(int indice) {
+		if(indice < 0 || indice > magos.size()-1){
+			System.out.println("opcion invalida");
+			return;
+		}
 		String mago = magos.get(indice).getNombreMago();
 		magos.remove(indice);
 		ReescribirMagos();
@@ -242,6 +258,14 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void ModificarMagoAddHechizos(int indice , int indicehechizo) {
+		if(indice <0 || indice> magos.size()-1){
+			System.out.println("indice del mago invalida");
+			return;
+		}
+		if(indicehechizo<0 || indicehechizo>hechizos.size()-1){
+			System.out.println("inidice del hechizo invalida");
+			return;
+		}
 		Hechizo h = hechizos.get(indicehechizo);
 		magos.get(indice).getHechizos().add(h);
 		ReescribirMagos();
@@ -250,7 +274,14 @@ public class SystemImpl implements Sistema{
 	 * Elimina un hechizo seleccionado de un mago en especifico
 	 */
 	public void ModificarMagoDeleteHechizos(int indice , int indicehechizo) {
-		
+		if(indice <0 || indice> magos.size()-1){
+			System.out.println("indice del mago invalida");
+			return;
+		}
+		if(indicehechizo<0 || indicehechizo>hechizos.size()-1){
+			System.out.println("inidice del hechizo invalida");
+			return;
+		}
 		magos.get(indice).getHechizos().remove(indicehechizo);
 		ReescribirMagos();
 	}
@@ -291,6 +322,10 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void MostrarHechizosMago(int indice) {
+		if(indice<0||indice>magos.size()-1){
+			System.out.println("indice del mago invalida");
+			return;
+		}
 		List<Hechizo> lista = magos.get(indice).getHechizos();
 				for (int i = 0; i<lista.size();i++) {
 					System.out.println( (i+1) + ") " +lista.get(i).getNombreHechizo());
@@ -317,6 +352,10 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void ModificarHechizo(String cambio,int opcion, int op) {
+		if(opcion < 0 || opcion > hechizos.size()-1){
+			System.out.println("indice de hechizo invalida");
+			return;
+		}
 		switch (op) {
 			case 1:
 				hechizos.get(opcion).setNombreHechizo(cambio);
@@ -364,6 +403,9 @@ public class SystemImpl implements Sistema{
 				ReescribirHechizos();
 				ReescribirMagos();
 				break;
+			default:
+			System.out.println("opcion invalida");
+			break;
 					}
 	}
 	/**
@@ -371,6 +413,10 @@ public class SystemImpl implements Sistema{
 	 */
 	@Override
 	public void BuscarHechizo(int indice) {
+		if(indice<0||indice>hechizos.size()-1){
+			System.out.println("Indice del hechizo invalida");
+			return;
+		}
 		Hechizo h = hechizos.get(indice);
 		System.out.println(h);
 	}
@@ -388,6 +434,10 @@ public class SystemImpl implements Sistema{
 	 * Muestra los atributos modificables para un hechizo seleccionado
 	 */
 	public void MostrarOpcionesModificar(int indice) {
+		if(indice<0||indice>hechizos.size()-1){
+			System.out.println("indice de hechizo invalida");
+			return;
+		}
     Hechizo h = hechizos.get(indice);
     System.out.println("1. Nombre: " + h.getNombreHechizo());
     System.out.println("2. Daño: " + h.getDamage());
