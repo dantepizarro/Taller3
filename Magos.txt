@@ -14,3 +14,4 @@ Rabi;Latigazo|Absorber|Vórtice Ígneo|Avalancha|Rueda Fuego|Tormenta de Arena
 Nilo;Patada Ígnea|Acua Jet|Huesomerang|Fogonazo|Polen Somnífero|Torbellino
 Papulini;Fuego Sagrado|Absorber|Infierno
 manugo;Shuriken de Agua
+manugo;

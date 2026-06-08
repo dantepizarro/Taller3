@@ -50,7 +50,7 @@ public class Fuego extends Hechizo implements Visitable{
 	}
 	/**
      * Acepta un visitante de tipo GuardarHechizo para
-     * persistir este hechizo en el archivo de datos.
+     * escribir este hechizo en el archivo de datos.
      *
      * @param guardarHechizo visitante encargado de guardar el hechizo
      */

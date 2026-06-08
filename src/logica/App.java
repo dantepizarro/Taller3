@@ -5,7 +5,11 @@ import dominio.HechizoVisitor;
 
 import java.io.File;
 
-
+/**
+ * Aqui se desarollara la interaccion con el usuario a traves de la consola
+ * Se tendra un scanner global el cual se encargara de solicitar datos al usuarip
+ * Ademas se tendra un sistema global para el desarrollo de los calculos operaciones etc del programa
+ */
 public class App {
 	private static Scanner scan = new Scanner (System.in);
 	private static Sistema sys = new SystemImpl();
@@ -16,6 +20,11 @@ public class App {
 		menuInicial();
 		scan.close();
 	}
+	/**
+	 * Este metodo se encarga de leer el archvio txt Hechizos.txt
+	 * Este metodo guarda a traves del sistema los hechizos que encuentre en el archivo
+	 * Creando las debidas instancias cuando son necesarias
+	 */
 	public static void LeerHechizos() {
 		try {
 			Scanner scanHechizo = new Scanner(new File("Hechizos.txt"));
@@ -52,6 +61,10 @@ public class App {
 			System.out.println("problemas con el archivo Hechizos");
 		}
 	}
+	/**
+	 * Este metodo se encarga de leer el archivo Magos.txt
+	 * Ademas se encarga de entregarle los valores al sistema para que cree las intancias
+	 */
 	public static void LeerMagos() {
 		try {
 			Scanner scanMagos = new Scanner(new File("Magos.txt"));
@@ -65,6 +78,9 @@ public class App {
 			System.out.println("problemas con el archivo magos");
 		}
 	}
+	/**
+	 * Aqui el usuario puede interactuar con el programa para seleccionar un menu u otro ademas de salir del programa
+	 */
 	public static void menuInicial() {
 		int opcion;
 		do {
@@ -85,6 +101,10 @@ public class App {
 			}
 		}while(opcion != 3);
 	}
+	/**
+	 * Aqui el usuario puede interactuar con el programa para seleccionar una opcion de administrados
+	 * ya sea cambiar un mago o un hechizo o eliminarlo u agregarlo
+	 */
 	public static void menuAdministrador() {
 		int opcion;
 		do {
@@ -128,6 +148,10 @@ public class App {
 			
 		}while(opcion != 7);
 	}
+	/**
+	 * Aqui el usuario puede interactuar con el programa para seleccionar una opcion de analista
+	 * ya sea ver el top de magos o hechizos o ver los datos de los archivos
+	 */
 	public static void menuAnalista() {
 		int opcion;
 		do {
@@ -171,6 +195,10 @@ public class App {
 			
 		}while(opcion != 7);
 	}
+	/**
+	 * Aqui el usuario puede agregar un mago al archivo dandole al programa un nombre 
+	 * y unos hechizos si es que el usuario quiere
+	 */
 	private static void AgregarMagoNuevo(){
 		System.out.println();
 
@@ -192,6 +220,10 @@ public class App {
 			
 		
 	}
+	/**
+	 * El usuario puede modificar cualquier mago que se encuentre creado pudiendo cambiar su nombre
+	 * o su lista de hechizos
+	 */
 	private static void ModificarMago() {
 		int opcion;
 		sys.MostrarMagos();
@@ -227,6 +259,10 @@ public class App {
 		}
 		
 	}	
+	/**
+	 * Permite agregar un nuevo hechizo al programa solicitando datos segun sea necesario en cada caso
+	 * por ejemplo el fuego solo puede aceptar 1 efecto adicional
+	 */
 	private static void AgregarHechizo(){
 		String nombreHechizo;
 		String tipo;
@@ -270,6 +306,10 @@ public class App {
 			}				
 				
 	}
+	/**
+	 * Se utiliza para indicar al sistema que hechizo se desea borrar, en caso que algun mago 
+	 * posea dicho hechizo se elimina de su lista
+	 */
 	private static void EliminarHechizo() {
 		int opcion;
 		sys.MostrarHechizos();
@@ -280,6 +320,9 @@ public class App {
 		sys.EliminarHechizo(opcion);
 		System.out.println("Hechizo eliminado correctamente");
 	}
+	/*
+	 * Elimina por completo a algun mago registrado borrando su nombre y los hechizos que sabia
+	 */
 	private static void EliminarMago(){
 		int opcion;
 		sys.MostrarMagos();
@@ -289,6 +332,10 @@ public class App {
 		opcion = Integer.parseInt(op) -1 ;
 		sys.EliminarMago(opcion);
 	}
+	/**
+	 * Permite modificar algun hechizo de los cuales esten dentro del archivo
+	 * pudiendo modificar su nombre daño o alguno de sus efectos secundarios
+	 */
 	private static void ModificarHechizo(){
     	sys.MostrarHechizos();
     	System.out.println("Ingresa el numero del hechizo que desea modificar");
