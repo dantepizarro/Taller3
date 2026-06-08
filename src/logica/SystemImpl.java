@@ -8,23 +8,41 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * Implementa los metodos de la interfaz Sistema, y realiza todo los operaciones que solicita
+ * App, Gestiona la lista de todos los hechizos y magos existentes, y utiliza visitor
+ * para realizar calculos de puntajes y puntuaciones totales
+ */
 public class SystemImpl implements Sistema{
-
+	/**
+	 * ArrayList que contiene todos los hechizos existentes
+	 * extraidos de Hechizos.txt
+	 */
 	private static List<Hechizo> hechizos = new ArrayList<Hechizo>();
+	/**
+	 * ArrayList que contiene todos los magos existentes
+	 * extraidos de Magos.txt
+	 */
 	private static List<Mago> magos = new ArrayList<Mago>();
+	/**
+	 * Crea un objeto Hechizo del tipo Tierra o Fuego
+	 */
 	@Override
 	public void AgregarTierraFuego(String nombreHechizo, String tipo, int damage, int efecto) {
 		if(tipo.equalsIgnoreCase("fuego")) hechizos.add(new Fuego(nombreHechizo,tipo,damage,efecto));
 		else hechizos.add(new Tierra(nombreHechizo,tipo,damage,efecto));
 	}
-
+	/**
+	 * Crea un objeto Hechizo del tipo Agua o Planta
+	 */
 	@Override
 	public void AgregarAguaPlanta(String nombreHechizo, String tipo, int damage, int efecto1, int efecto2) {
 		if(tipo.equalsIgnoreCase("agua")) hechizos.add(new Agua(nombreHechizo,tipo,damage,efecto1,efecto2));
 		else hechizos.add(new Planta(nombreHechizo,tipo,damage,efecto1,efecto2));
 	}
-
+	/**
+	 * Agrega un mago leido desde el archivo Magos.txt a la lista global de magos
+	 */
 	@Override
 	public void AgregarMago(String nombreMago, String[] hechizosMago) {
 		List<Hechizo> HechizosMago = new ArrayList<Hechizo>();
@@ -38,6 +56,9 @@ public class SystemImpl implements Sistema{
 		magos.add(new Mago(nombreMago,HechizosMago));
 		
 	}
+	/**
+	 * Muestra todos los hechizos existentes
+	 */
 	public void MostrarHechizos() {
 		int i = 1;
 		for (Hechizo h : hechizos) {
@@ -46,6 +67,9 @@ public class SystemImpl implements Sistema{
 		}
 	
 	} 
+	/**
+	 * Muestra todos los magos existentes
+	 */
 	public void MostrarMagos() {
 		int a = 1;
 		for (Mago m : magos) {
@@ -53,6 +77,9 @@ public class SystemImpl implements Sistema{
 			a++;
 		}
 	}
+	/**
+	 * Muestra todos los hechizos con sus puntajes correspondientes
+	 */
 	public void MostrarHechizosPuntuacion(HechizoVisitor visitor) {
 		int i = 1;
 		  for(Hechizo h : hechizos) {
@@ -64,6 +91,9 @@ public class SystemImpl implements Sistema{
 		    }
 
 	}
+	/**
+	 * Muestra todos los magos existentes con sus puntuaciones totales
+	 */
 	public void MostrarMagosPuntuacion(HechizoVisitor visitor) {
 	    for(Mago m : magos) {
 	        double puntuacionTotal = 0;
@@ -74,6 +104,9 @@ public class SystemImpl implements Sistema{
 	        System.out.println(m.getNombreMago() + " - Puntuación: " + puntuacionTotal);
 	    }
 	}
+	/**
+	 * Muestra los 3 magos con puntuacion mas alta
+	 */
 	public void TopMejoresMagos(HechizoVisitor visitor){
 
 		List<Mago> magosTop = new ArrayList<>(magos);
@@ -93,6 +126,9 @@ public class SystemImpl implements Sistema{
 			j++;
 		}
 	}
+	/**
+	 * Muestra los 10 mejores hechizos segun su puntaje
+	 */
 	public void TopMejoresHechizos(HechizoVisitor visitor){
 		List<Hechizo> hechizosTop = new ArrayList<>(hechizos);
 		for(int a = 0;a<hechizosTop.size()-1;a++){
@@ -113,7 +149,9 @@ public class SystemImpl implements Sistema{
 			
 		}
 	}
-
+	/**
+	 * Agrega un objeto Hechizo del tipo Tierra o Fuego nuevo a la lista de hechizos
+	 */
 	@Override
 	public void AgregarTierraFuegoNuevos(String nombreHechizo, String tipo, int damage, int efecto) {
 		if(tipo.equalsIgnoreCase("fuego")) {
@@ -126,7 +164,9 @@ public class SystemImpl implements Sistema{
 			t.aceptar(new GuardarHechizo());
 		}
 	}
-
+	/**
+	 * Agrega un objeto Hechizo del tipo Agua o Planta nuevo a la lista de hechizos
+	 */
 	@Override
 	public void AgregarAguaPlantaNuevos(String nombreHechizo, String tipo, int damage, int efecto1, int efecto2) {
 		if(tipo.equalsIgnoreCase("planta")) {
@@ -139,7 +179,9 @@ public class SystemImpl implements Sistema{
 			a.aceptar(new GuardarHechizo(true));
 		}
 	}
-
+	/**
+	 * Elimina un hechizo seleccionado de la lista de hechizo y de sus txt
+	 */
 	@Override
 	public void EliminarHechizo(int indice) {
 		String hechizo = hechizos.get(indice).getNombreHechizo();
@@ -178,7 +220,9 @@ public class SystemImpl implements Sistema{
 	
 		
 	}
-
+	/**
+	 * ELimina un mago seleccionado de la lista de magos y de sus txt
+	 */
 	@Override
 	public void EliminarMago(int indice) {
 		String mago = magos.get(indice).getNombreMago();
@@ -186,22 +230,33 @@ public class SystemImpl implements Sistema{
 		ReescribirMagos();
 
 	}
+	/**
+	 * MOdifica el nombre de un mago seleccionado
+	 */
 	public void ModificarMagoNombre(int indice,String newnombre) {
 		magos.get(indice).setNombreMago(newnombre);
 		ReescribirMagos();
 	}
-
+	/**
+	 * Agrega un hechizo a algun mago seleccionado
+	 */
 	@Override
 	public void ModificarMagoAddHechizos(int indice , int indicehechizo) {
 		Hechizo h = hechizos.get(indicehechizo);
 		magos.get(indice).getHechizos().add(h);
 		ReescribirMagos();
 	}
+	/**
+	 * Elimina un hechizo seleccionado de un mago en especifico
+	 */
 	public void ModificarMagoDeleteHechizos(int indice , int indicehechizo) {
 		
 		magos.get(indice).getHechizos().remove(indicehechizo);
 		ReescribirMagos();
 	}
+	/**
+	 * Reescribe el archivo de Magos.txt
+	 */
 	@Override
 	public void ReescribirMagos() {
 		try {
@@ -231,7 +286,9 @@ public class SystemImpl implements Sistema{
 			}
 		}
 	}
-
+	/**
+	 * Muestra los hechizos de un mago seleccionado
+	 */
 	@Override
 	public void MostrarHechizosMago(int indice) {
 		List<Hechizo> lista = magos.get(indice).getHechizos();
@@ -239,7 +296,10 @@ public class SystemImpl implements Sistema{
 					System.out.println( (i+1) + ") " +lista.get(i).getNombreHechizo());
 				}
 	}
-
+	/**
+	 * Crea un mago nuevo con sus hechizos seleccionados y lo agrega
+	 * a las listas y txts correspondientes
+	 */
 	@Override
 	public void AgregarMagosNuevos(String NombreMago, String[] hechizosmago) {
 		List<Hechizo> HechizosMago = new ArrayList<Hechizo>();
@@ -252,7 +312,9 @@ public class SystemImpl implements Sistema{
 		magos.add(new Mago(NombreMago,HechizosMago));
 		ReescribirMagos();
 	}
-
+	/**
+	 * Modifica el atributo seleccionado de un hechizo especifico
+	 */
 	@Override
 	public void ModificarHechizo(String cambio,int opcion, int op) {
 		switch (op) {
@@ -304,13 +366,17 @@ public class SystemImpl implements Sistema{
 				break;
 					}
 	}
-
+	/**
+	 * Busca un hechizo segun un indice seleccionado
+	 */
 	@Override
 	public void BuscarHechizo(int indice) {
 		Hechizo h = hechizos.get(indice);
 		System.out.println(h);
 	}
-
+	/**
+	 * Reescribe el archivo de Hechizos.txt
+	 */
 	@Override
 	public void ReescribirHechizos() {
 		GuardarHechizo guardador = new GuardarHechizo(false);
@@ -318,6 +384,9 @@ public class SystemImpl implements Sistema{
 			((Visitable) h).aceptar(guardador);
 		}
 	}
+	/**
+	 * Muestra los atributos modificables para un hechizo seleccionado
+	 */
 	public void MostrarOpcionesModificar(int indice) {
     Hechizo h = hechizos.get(indice);
     System.out.println("1. Nombre: " + h.getNombreHechizo());
@@ -340,7 +409,9 @@ public class SystemImpl implements Sistema{
             break;
     }
 }
-
+	/**
+	 * Retorna el tipo de un hechizo seleccionado
+	 */
 	@Override
 	public String getTipoHechizo(int opcion) {
 		return hechizos.get(opcion).getTipo();
