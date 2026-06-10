@@ -1,13 +1,13 @@
+/**
+ * Antonio Arancibia 22.313.079-8 ICCI
+ * Dante Pizarro 22.216.463-k ICCI
+ */
 package logica;
 import java.util.Scanner;
 
 import dominio.HechizoVisitor;
 
 import java.io.File;
-/**
- * Antonio Arancibia 22.313.079-8 ICCI
- * Dante Pizarro 22.216.463-k ICCI
- */
 /**
  * Aqui se desarollara la interaccion con el usuario a traves de la consola
  * Se tendra un scanner global el cual se encargara de solicitar datos al usuarip
